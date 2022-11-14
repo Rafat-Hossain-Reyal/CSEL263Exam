@@ -38,13 +38,24 @@ public class StudentList {
             System.out.println(Constant.dataLoadedMsg);
         } else if (args[0].contains(Constant.search)) {
             System.out.println(Constant.loadingDataMsg);
-                String names=readFile(Constant.txtfileName);
-                if (names.contains(args[0].substring(1))) {
-                    System.out.println(Constant.foundMsg);
-                } else {
-                    System.out.println(Constant.notFoundMsg);
+            String [] names=readFile(Constant.txtfileName).split(Constant.coma);
+            int count1=0;
+            for(int i=0;i<names.length;i++)
+            {
+                if(names[i].trim().equals(args[0].substring(1)))
+                {
+                    count1++;
                 }
 
+            }
+            if(count1==0)
+            {
+                System.out.println(args[0].substring(1)+" "+ Constant.notFoundMsg);
+            }
+            else
+            {
+                System.out.println(args[0].substring(1)+" "+Constant.foundMsg+" "+count1+"times");
+            }
             System.out.println(Constant.dataLoadedMsg);
         } else if (args[0].contains(Constant.count)) {
             System.out.println(Constant.loadingDataMsg);
