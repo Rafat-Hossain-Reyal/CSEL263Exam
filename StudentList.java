@@ -9,9 +9,8 @@ public class StudentList {
         if (args[0].equals(Constant.showAll)) {
             System.out.println(Constant.loadingDataMsg);
 
-                BufferedReader bufferedReader =readFile(Constant.txtfileName);
-                String line = readOneFile(bufferedReader);
-                String studentNames[] = line.split(Constant.coma);
+                String names=readFile(Constant.txtfileName);
+                String studentNames[] = names.split(Constant.coma);
                 for (String studentName : studentNames) {
                     System.out.println(studentName.trim());
                 }
@@ -20,9 +19,8 @@ public class StudentList {
         } else if (args[0].equals(Constant.random)) {
             System.out.println(Constant.loadingDataMsg);
 
-                BufferedReader bufferedReader =readFile(Constant.txtfileName);
-                String line = readOneFile(bufferedReader);
-                String studentNames[] = line.split(Constant.coma);
+                String names=readFile(Constant.txtfileName);
+                String studentNames[] = names.split(Constant.coma);
                 Random random = new Random();
                 int studentNumber = random.nextInt(4);
                 System.out.println(studentNames[studentNumber].trim());
@@ -45,9 +43,8 @@ public class StudentList {
             System.out.println(Constant.dataLoadedMsg);
         } else if (args[0].contains(Constant.search)) {
             System.out.println(Constant.loadingDataMsg);
-                BufferedReader bufferedReader = readFile(Constant.txtfileName);
-                String line = readOneFile(bufferedReader);
-                if (line.contains(args[0].substring(1))) {
+                String names=readFile(Constant.txtfileName);
+                if (names.contains(args[0].substring(1))) {
                     System.out.println(Constant.foundMsg);
                 } else {
                     System.out.println(Constant.notFoundMsg);
@@ -57,9 +54,8 @@ public class StudentList {
         } else if (args[0].contains(Constant.count)) {
             System.out.println(Constant.loadingDataMsg);
 
-                BufferedReader bufferedReader = readFile(Constant.txtfileName);
-                String line = readOneFile(bufferedReader);
-                String names[] = line.split(Constant.coma);
+                String names1=readFile(Constant.txtfileName);
+                String names[] = names1.split(Constant.coma);
                 System.out.println(names.length / 2 + Constant.wordFound);
 
             System.out.println(Constant.dataLoadedMsg);
@@ -68,24 +64,15 @@ public class StudentList {
             System.out.println(Constant.warningMsg);
         }
     }
-    static BufferedReader readFile(String fileName)
+    static String readFile(String fileName)
     {
         try
         {
-            return new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(fileName)));
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-    static String readOneFile(BufferedReader bufferedReader)
-    {
-        try
-        {
-            return bufferedReader.readLine();
+            BufferedReader bufferedReader= new BufferedReader(
+                    new InputStreamReader(new FileInputStream(fileName)));
+        String names=bufferedReader.readLine();
+        return  names;
+
         }catch (Exception e)
         {
             return null;
