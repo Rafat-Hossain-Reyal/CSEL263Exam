@@ -61,7 +61,7 @@ public class StudentList {
             System.out.println(Constant.loadingDataMsg);
 
                 String names[] = readFile(Constant.txtfileName).split(Constant.coma);
-                System.out.println(names.length / 2 + Constant.wordFound);
+                System.out.println(names.length + Constant.wordFound);
 
             System.out.println(Constant.dataLoadedMsg);
         }
