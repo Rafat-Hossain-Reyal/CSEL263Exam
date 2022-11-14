@@ -9,8 +9,7 @@ public class StudentList {
         if (args[0].equals(Constant.showAll)) {
             System.out.println(Constant.loadingDataMsg);
 
-                String names=readFile(Constant.txtfileName);
-                String studentNames[] = names.split(Constant.coma);
+                String studentNames[] = readFile(Constant.txtfileName).split(Constant.coma);
                 for (String studentName : studentNames) {
                     System.out.println(studentName.trim());
                 }
@@ -19,8 +18,7 @@ public class StudentList {
         } else if (args[0].equals(Constant.random)) {
             System.out.println(Constant.loadingDataMsg);
 
-                String names=readFile(Constant.txtfileName);
-                String studentNames[] = names.split(Constant.coma);
+                String studentNames[] = readFile(Constant.txtfileName).split(Constant.coma);
                 Random random = new Random();
                 int studentNumber = random.nextInt(4);
                 System.out.println(studentNames[studentNumber].trim());
@@ -31,11 +29,8 @@ public class StudentList {
             try {
                 BufferedWriter bufferedWriter = writeFile(Constant.txtfileName);
                 String newStudentName = args[0].substring(1);
-                Date date = new Date();
-                String dateFormate = Constant.dateFormat;
-                DateFormat dateFormat = new SimpleDateFormat(dateFormate);
-                String formatedDate = dateFormat.format(date);
-                bufferedWriter.write(Constant.coma + newStudentName + Constant.updateList + formatedDate);
+                DateFormat dateFormat = new SimpleDateFormat(Constant.dateFormat);
+                bufferedWriter.write(Constant.coma + newStudentName + Constant.updateList + new SimpleDateFormat(Constant.dateFormat));
                 bufferedWriter.close();
             } catch (Exception e) {
             }
@@ -54,8 +49,7 @@ public class StudentList {
         } else if (args[0].contains(Constant.count)) {
             System.out.println(Constant.loadingDataMsg);
 
-                String names1=readFile(Constant.txtfileName);
-                String names[] = names1.split(Constant.coma);
+                String names[] = readFile(Constant.txtfileName).split(Constant.coma);
                 System.out.println(names.length / 2 + Constant.wordFound);
 
             System.out.println(Constant.dataLoadedMsg);
